@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://fi-2-reignited.local/';
+$config['base_url'] = 'http://fi-2-reignited.local';
 
 /*
 |--------------------------------------------------------------------------
@@ -384,6 +384,16 @@ $config['sess_save_path'] = NULL;
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
+
+/*
+$config['sess_driver'] = 'database';
+$config['sess_cookie_name'] = 'ci_session';
+$config['sess_expiration'] = 14400;
+$config['sess_save_path'] = 'system_session';
+$config['sess_match_ip'] = FALSE;
+$config['sess_time_to_update'] = 600;
+$config['sess_regenerate_destroy'] = TRUE;
+*/
 
 /*
 |--------------------------------------------------------------------------
