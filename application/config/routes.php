@@ -49,6 +49,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+// admin and modules
+$handle = opendir(APPPATH.'modules');
+if ($handle)
+{
+	while ( false !== ($module = readdir($handle)) )
+	{
+		// make sure we don't map silly dirs like .svn, or . or ..
+
+		if (substr($module, 0, 1) != ".")
+		{
+			if ( file_exists(APPPATH.'modules/'.$module.'/'.$module.'_routes.php') )
+			{
+				include(APPPATH.'modules/'.$module.'/'.$module.'_routes.php');
+			}
+
+			if ( file_exists(APPPATH.'modules/'.$module.'/controllers/Admin.php') )
+			{
+				$route['admin/'.$module] = $module.'/admin';
+				$route['admin/'.$module.'/(.*)'] = $module.'/admin/$1';
+			}
+
+			if ( file_exists(APPPATH.'modules/'.$module.'/controllers/'.$module.'.php') )
+			{
+				$route[$module] = $module;
+				$route[$module.'/(.*)'] = $module.'/$1';
+			}
+		}
+	}
+}
+
 $route['default_controller'] = 'testmod/';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
