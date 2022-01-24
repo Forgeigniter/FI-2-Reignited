@@ -91,7 +91,7 @@ class Forge_core
     public function web_form()
     {
         // get web form
-        if (!$webform = $this->CI->core->get_web_form_by_ref($this->CI->core->decode($this->CI->input->post('formID')))) {
+        if (!$webform = $this->CI->core->get_web_form_by_ref($this->CI->forge_core->decode($this->CI->input->post('formID')))) {
             return false;
         }
 
@@ -343,7 +343,7 @@ class Forge_core
     public function create_user()
     {
         // get values
-        $this->CI->core->get_values('users');
+        $this->CI->forge_core->get_values('users');
 
         // security check
         if ($this->CI->input->post('username')) {
@@ -426,7 +426,7 @@ class Forge_core
 
         // update table
         if ($this->CI->input->post('email') && ($this->CI->input->post('password') || $password)) {
-            if ($this->CI->core->update('users')) {
+            if ($this->CI->forge_core->update('users')) {
                 $result = array(
                     'userID' => $this->CI->db->insert_id(),
                     'email' => $this->CI->input->post('email', true),
